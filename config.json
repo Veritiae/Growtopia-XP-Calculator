@@ -1,11 +1,11 @@
 {
-    "token": "MTI5NzIzMTQzMjMzNDE4NDQ1OA.GJoovx.B2kxMbivrMDqEfYMq0YsW2xtQ4ynY6j3gKf2vY",
-    "clientId": "1297231432334184458",
-    "priceRole": "1285762249968975984",
+    "token": "Discord-Token-Here",
+    "clientId": "Discord-Bot-Client-ID",
+    "priceRole": "Role-ID-For-Prices-Command",
     "prices": {
-      "smallPackCost": 180,
-      "bigPackCost": 400,
-      "hugePackCost": 750,
-      "primePackCost": 1600
+      "smallPackCost": 180, // You can set any price you want here.
+      "bigPackCost": 400, // You can set any price you want here.
+      "hugePackCost": 750, // You can set any price you want here.
+      "primePackCost": 1600 // You can set any price you want here.
   }
 }

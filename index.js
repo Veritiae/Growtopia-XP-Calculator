@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits } = require('discord.js');
-const { token, clientId, guildId } = require('./config.json');
+const { token, clientId } = require('./config.json');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -34,7 +34,7 @@ const rest = new REST({ version: '9' }).setToken(token);
         console.log('Started refreshing application (/) commands.');
 
         // Register commands with Discord API
-        await rest.put(Routes.applicationGuildCommands(clientId, guildId), {
+        await rest.put(Routes.applicationGuildCommands(clientId), {
             body: commands,
         });
 

@@ -1,0 +1,11 @@
+{
+    "token": "MTI5NzIzMTQzMjMzNDE4NDQ1OA.GJoovx.B2kxMbivrMDqEfYMq0YsW2xtQ4ynY6j3gKf2vY",
+    "clientId": "1297231432334184458",
+    "guildId": "755729575392313414",
+    "prices": {
+      "smallPackCost": 180,
+      "bigPackCost": 400,
+      "hugePackCost": 750,
+      "primePackCost": 1600
+  }
+}

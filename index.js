@@ -33,8 +33,8 @@ const rest = new REST({ version: '9' }).setToken(token);
     try {
         console.log('Started refreshing application (/) commands.');
 
-        // Register commands with Discord API
-        await rest.put(Routes.applicationGuildCommands(clientId), {
+        // Register commands globally (no guildId required)
+        await rest.put(Routes.applicationCommands(clientId), {
             body: commands,
         });
 

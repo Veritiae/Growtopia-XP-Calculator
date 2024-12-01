@@ -67,7 +67,7 @@ module.exports = {
                 }
             ],
             footer: {
-                text: 'Calculated by OLXLVL Calculator | Powered by Matto-Bots.',
+                text: 'Calculated by Growtopia XP Calculator | Powered by Matto-Bots.',
                 icon_url: 'https://example.com/footer-icon.png',  // Replace with your logo
             },
             thumbnail: {

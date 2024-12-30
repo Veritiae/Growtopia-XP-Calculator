@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { prices } = require('../config');  // Access prices from config
+const { prices } = require('../config'); 
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,7 +22,6 @@ module.exports = {
                 .setDescription('Price for Prime Pack (in WLs)')
                 .setRequired(false)),
     async execute(interaction) {
-        // Check if the user has the required role
         const roleID = prices.priceRole;
         if (!interaction.member.roles.cache.has(roleID)) {
             return interaction.reply({ content: 'You do not have permission to use this command.', ephemeral: true });
@@ -33,13 +32,11 @@ module.exports = {
         const huge = interaction.options.getInteger('huge');
         const prime = interaction.options.getInteger('prime');
 
-        // Update the prices in the config object
         if (small) prices.smallPackCost = small;
         if (big) prices.bigPackCost = big;
         if (huge) prices.hugePackCost = huge;
         if (prime) prices.primePackCost = prime;
 
-        // Send confirmation message
         const embed = {
             title: '💰 Pack Prices Updated',
             description: 'The prices for the packs have been updated.',

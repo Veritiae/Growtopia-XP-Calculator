@@ -1,6 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { totalXPToLevel, calculateCost } = require('../utils/calculator');  // Ensure correct import
-
+const { totalXPToLevel, calculateCost } = require('../utils/calculator');  
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('checkxp')
@@ -30,20 +29,17 @@ module.exports = {
             return interaction.reply('Please enter valid levels (1 <= current level < target level <= 125).');
         }
 
-        // Calculate total XP and cost
         const totalXP = totalXPToLevel(currentLevel, targetLevel);
         const { result, packs, conversionDetails } = calculateCost(totalXP, speed);
 
-        // Calculate total time in minutes and convert to hours and minutes
         const totalTimeMinutes = packs.totalTimeHours * 60;
         const hours = Math.floor(totalTimeMinutes / 60);
         const minutes = Math.round(totalTimeMinutes % 60);
 
-        // Build the embed with the breakdown and conversion details
         const embedMessage = {
             title: '🌟 **Growtopia XP & Pack Breakdown** 🌟',
             description: `This is what it will cost to get from level **\`${currentLevel}\`** to level **\`${targetLevel}\`**.`,
-            color: 0x1f8b4c,  // Green color for the embed
+            color: 0x1f8b4c,  
             fields: [
                 {
                     name: '💰 **Cost Breakdown**',
@@ -67,7 +63,7 @@ module.exports = {
                 }
             ],
             footer: {
-                text: 'Calculated by Growtopia XP Calculator | Powered by Matto-Bots.',
+                text: 'Calculated by Growtopia XP Calculator | Powered by Verity-Bots.',
                 icon_url: 'https://example.com/footer-icon.png',  // Replace with your logo
             },
             thumbnail: {
@@ -75,7 +71,6 @@ module.exports = {
             }
         };
 
-        // Send the embed message as a response
         return interaction.reply({ embeds: [embedMessage] });
     },
 };

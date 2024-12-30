@@ -1,22 +1,18 @@
-// utils/calculator.js
 
-const { prices } = require('../config'); // Access current prices
+const { prices } = require('../config'); 
 
-// Function to calculate XP for each level
 function calculateXP(level) {
-    return 50 * (level * level + 2);  // XP formula as provided
+    return 50 * (level * level + 2);  
 }
 
-// Function to calculate the total XP to level up
 function totalXPToLevel(currentLevel, targetLevel) {
     let totalXP = 0;
     for (let level = currentLevel; level < targetLevel; level++) {
-        totalXP += calculateXP(level);  // Add XP for each level
+        totalXP += calculateXP(level);  
     }
     return totalXP;
 }
 
-// Function to calculate the cost and breakdown of XP into packs
 function calculateCost(totalXP, isFast) {
     const { smallPackCost, bigPackCost, hugePackCost, primePackCost } = prices;
 
@@ -25,11 +21,10 @@ function calculateCost(totalXP, isFast) {
     const hugePackXP = 1100000;
     const primePackXP = 2000000;
 
-    // Correct times based on your images
-    const smallPackTime = 5;  // 5 minutes for small pack
-    const bigPackTime = 15;   // 15 minutes for big pack
-    const hugePackTime = 30;  // 30 minutes for huge pack
-    const primePackTime = 30; // 30 minutes for prime pack
+    const smallPackTime = 5;  
+    const bigPackTime = 15;   
+    const hugePackTime = 30;  
+    const primePackTime = 30; 
 
     let primePacks = Math.floor(totalXP / primePackXP);
     totalXP %= primePackXP;
@@ -42,47 +37,40 @@ function calculateCost(totalXP, isFast) {
 
     let smallPacks = Math.floor(totalXP / smallPackXP);
 
-    // Apply the conversion logic:
     let conversionDetails = [];
 
-    // 2 Big Packs = 1 Huge Pack
     if (bigPacks >= 2) {
-        hugePacks += Math.floor(bigPacks / 2);  // Convert 2 big packs into huge packs
-        bigPacks %= 2; // Keep the remainder big packs
+        hugePacks += Math.floor(bigPacks / 2);  
+        bigPacks %= 2;
         conversionDetails.push(`2 Big Packs = 1 Huge Pack (Converted)`);
     }
 
-    // Big Pack + 2 Small Packs = 1 Huge Pack
     if (bigPacks >= 1 && smallPacks >= 2) {
-        hugePacks += 1; // Convert 1 big pack + 2 small packs into 1 huge pack
-        bigPacks -= 1; // Subtract the used big pack
-        smallPacks -= 2; // Subtract the used small packs
+        hugePacks += 1; 
+        bigPacks -= 1; 
+        smallPacks -= 2; 
         conversionDetails.push(`1 Big Pack + 2 Small Packs = 1 Huge Pack (Converted)`);
     }
 
-    // Big Pack + 3 Small Packs = 1 Huge Pack
     if (bigPacks >= 1 && smallPacks >= 3) {
-        hugePacks += 1; // Convert 1 big pack + 3 small packs into 1 huge pack
-        bigPacks -= 1; // Subtract the used big pack
-        smallPacks -= 3; // Subtract the used small packs
+        hugePacks += 1; 
+        bigPacks -= 1; 
+        smallPacks -= 3; 
         conversionDetails.push(`1 Big Pack + 3 Small Packs = 1 Huge Pack (Converted)`);
     }
 
-    // 3 Small Packs = 1 Big Pack
     if (smallPacks >= 3) {
-        bigPacks += Math.floor(smallPacks / 3); // Convert every 3 small packs into 1 big pack
-        smallPacks %= 3; // Keep the remainder small packs
+        bigPacks += Math.floor(smallPacks / 3);
+        smallPacks %= 3; 
         conversionDetails.push(`3 Small Packs = 1 Big Pack (Converted)`);
     }
 
-    // 2 Small Packs = 1 Big Pack
     if (smallPacks >= 2) {
-        bigPacks += Math.floor(smallPacks / 2); // Convert every 2 small packs into 1 big pack
-        smallPacks %= 2; // Keep the remainder small packs
+        bigPacks += Math.floor(smallPacks / 2);
+        smallPacks %= 2; 
         conversionDetails.push(`2 Small Packs = 1 Big Pack (Converted)`);
     }
 
-    // Calculating total costs and time
     let totalCostWL = primePacks * primePackCost + hugePacks * hugePackCost + bigPacks * bigPackCost + smallPacks * smallPackCost;
     let totalCostDL = totalCostWL / 100.0;
 

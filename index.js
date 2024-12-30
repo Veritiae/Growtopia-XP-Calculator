@@ -6,13 +6,10 @@ const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 const path = require('path');
 
-// Initialize the client
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-// Command collection to store commands
 client.commands = new Map();
 
-// Load commands dynamically from the 'commands' folder
 const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -20,7 +17,6 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 
-// Registering commands dynamically every time the bot restarts
 const commands = [];
 commandFiles.forEach(file => {
     const command = require(`./commands/${file}`);
@@ -33,7 +29,6 @@ const rest = new REST({ version: '9' }).setToken(token);
     try {
         console.log('Started refreshing application (/) commands.');
 
-        // Register commands globally (no guildId required)
         await rest.put(Routes.applicationCommands(clientId), {
             body: commands,
         });
@@ -44,7 +39,6 @@ const rest = new REST({ version: '9' }).setToken(token);
     }
 })();
 
-// Handling interactions with slash commands
 client.on('interactionCreate', async (interaction) => {
     if (!interaction.isCommand()) return;
 
@@ -61,10 +55,8 @@ client.on('interactionCreate', async (interaction) => {
     }
 });
 
-// Log the bot into Discord
 client.once('ready', () => {
     console.log(`Logged into bot ${client.user.tag}`);
 });
 
-// Log the bot in
 client.login(token);

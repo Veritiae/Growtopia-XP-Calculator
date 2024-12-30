@@ -1,11 +1,13 @@
+// Add Your Discord Token, Client ID, Role ID, and Prices Here.
 {
     "token": "Discord-Token-Here",
     "clientId": "Discord-Bot-Client-ID",
     "priceRole": "Role-ID-For-Prices-Command",
     "prices": {
-      "smallPackCost": 180, // You can set any price you want here.
-      "bigPackCost": 400, // You can set any price you want here.
-      "hugePackCost": 750, // You can set any price you want here.
-      "primePackCost": 1600 // You can set any price you want here.
+      // You can set any price you want here.
+      "smallPackCost": 180,
+      "bigPackCost": 400, 
+      "hugePackCost": 750, 
+      "primePackCost": 1600 
   }
 }
